@@ -1,0 +1,22 @@
+<h1>Nominations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nominations.each do |nominations| %>
+      <tr>
+        <td><%= nomination.email %></td>
+        <td><%= link_to 'Show', nomination %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Nomination', new_nomination_path %>

@@ -1,0 +1,56 @@
+<%= form_for(@nomination, url: nomination_path) do |f| %>
+  <% if @nomination.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nomination.errors.count, "error") %> prohibited this nomination from being saved:</h2>
+
+      <ul>
+      <% @nomination.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<div class="field">
+  <table>
+    <tr>
+      <th></th>
+      <th>Tell us about you</th>
+      <th>Tell us about who you'd like to nominate</th>
+    </tr>
+
+<%= form_for @nomination do |f| %>
+  <tr>
+    <td>
+      <%= f.radio_button_tag :nomination, "nominator" %>
+      <%= f.label_tag :nomination_nominator, "I want to nominate an arts entrepreneur!" %>
+      <%= f.radio_button_tag :nomination, "nominee" %>
+      <%= f.label_tag :nomination_nominee, "I want to nominate myself!" %><br />   
+    </td>
+    <td>
+    <%= f.text_field :nominator_first_name, :placeholder => "First Name", :required => true %>
+    <%= f.text_field :nominator_last_name, :placeholder => "Last Name", :required => true %><br />
+    <%= f.email_field :nominator_email, :placeholder => "Email", :required => true %><br />
+    <%= f.telephone_field :nominator_phone, :placeholder => "Phone Number" %><br />
+    </td>
+    <td>
+    <%= f.label :title, "Project Title", :required => true %>
+    <%= f.text_field :title %><br />
+    <%= f.text_field :nominee_first_name, :placeholder => "First Name", :required => true %>
+    <%= f.text_field :nominee_last_name, :placeholder => "Last Name", :required => true %><br />
+    <%= f.email_field :nominee_email, :placeholder => "Email", :required => true %><br />
+    <%= f.telephone_field :nominee_phone, :placeholder => "Phone Number" %><br /> 
+    <%= f.label :descripton, "Project Description" %>
+    <%= f.text_area :description, :required => true %>
+    <%= f.url_field :url, :placeholder => "Project URL" %>
+    </td>
+  </tr>
+<% end %>
+</table>    
+</div>
+
+  <div class="actions">
+    <h3>Everything look good?</h3>
+    <%= f.submit "Submit Nomination!" %>
+  </div>
+  <% end %>
